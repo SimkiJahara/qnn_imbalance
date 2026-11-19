@@ -1,0 +1,5 @@
+/Users/simnim/qnn_imbalance/qnn_imbalance.py:442: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+plain    after phase1 (500, 100): A=0.98 B=0.91 | after phase2 (100, 500): A=0.94 B=0.99 | after phase3 (500, 200): A=0.98 B=0.94
+weighted after phase1 (500, 100): A=0.97 B=0.95 | after phase2 (100, 500): A=0.96 B=0.96 | after phase3 (500, 200): A=0.97 B=0.95

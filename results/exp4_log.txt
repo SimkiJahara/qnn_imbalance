@@ -1,0 +1,9 @@
+/Users/simnim/qnn_imbalance/qnn_imbalance.py:383: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+plain-angle    lam=0.0: recall A=0.97 B=0.95 | mean angle A=[80.8 98.1] B=[84.2 70.5]
+plain-angle    lam=1.0: recall A=0.97 B=0.95 | mean angle A=[70.3 68.5] B=[56.6 55.9]
+plain-angle    lam=5.0: recall A=0.96 B=0.95 | mean angle A=[68.7 69.6] B=[50.5 50. ]
+balanced-angle lam=0.0: recall A=0.97 B=0.95 | mean angle A=[80.8 98.1] B=[84.2 70.5]
+balanced-angle lam=1.0: recall A=0.97 B=0.95 | mean angle A=[69.  73.9] B=[49.2 44.2]
+balanced-angle lam=5.0: recall A=0.96 B=0.94 | mean angle A=[67.3 70.1] B=[40.9 41.5]

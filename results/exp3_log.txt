@@ -1,0 +1,6 @@
+/Users/simnim/qnn_imbalance/qnn_imbalance.py:350: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.tight_layout(); plt.savefig(f"{S['tag']}_exp3_forgetting.png", dpi=150); plt.show()
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+init: recall A=0.47 B=0.40 | head-refit A=0.47 B=0.51 | angA=[82.4 90.9 94.6 90.5] angB=[81.6 88.3 86.4 94.1]
+after A: recall A=1.00 B=0.00 | head-refit A=0.95 B=0.89 | angA=[45.8 66.1 52.7 57.4] angB=[50.9 55.  94.  53.9]
+after B: recall A=0.10 B=1.00 | head-refit A=0.94 B=0.95 | angA=[102.   62.8  98.9  92.1] angB=[115.8  53.8 132.7 133.5]
