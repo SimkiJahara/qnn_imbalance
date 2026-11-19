@@ -1,0 +1,10 @@
+command: qnn_imbalance.py exp4 --a 0 --b 1 --epochs 150 --seeds 10
+args   : {'mode': 'exp4', 'a': 0, 'b': 1, 'features': 'resnet', 'epochs': 150, 'seeds': 10, 'target_a': 67.0, 'target_b': 23.0, 'weighted': False, 'phases': [(500, 100), (100, 500)], 'no_bias': False, 'out': 'results'}
+outputs and log -> results/0v1_resnet_exp4_e150_s10/
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+plain-angle    lam=0.0: recall A=0.98 B=0.91 | mean angle A=[67.8 95.2] B=[93.7 84.9]
+plain-angle    lam=1.0: recall A=0.99 B=0.89 | mean angle A=[67.7 67.6] B=[61.3 53.9]
+plain-angle    lam=5.0: recall A=0.99 B=0.84 | mean angle A=[68.9 68.9] B=[50.9 48.6]
+balanced-angle lam=0.0: recall A=0.98 B=0.91 | mean angle A=[67.8 95.2] B=[93.7 84.9]
+balanced-angle lam=1.0: recall A=0.99 B=0.88 | mean angle A=[67.6 73.3] B=[46.5 44.5]
+balanced-angle lam=5.0: recall A=0.99 B=0.82 | mean angle A=[68.8 69.7] B=[41.5 41.8]

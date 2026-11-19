@@ -1,0 +1,6 @@
+command: qnn_imbalance.py exp5 --a 3 --b 5 --epochs 150 --seeds 5 --phases 500,100;100,500;500,100
+args   : {'mode': 'exp5', 'a': 3, 'b': 5, 'features': 'resnet', 'epochs': 150, 'seeds': 5, 'target_a': 67.0, 'target_b': 23.0, 'weighted': False, 'phases': [(500, 100), (100, 500), (500, 100)], 'no_bias': False, 'freeze_head': False, 'lams': (0.0, 1.0, 5.0), 'configs': [(500, 100)], 'out': 'results'}
+outputs and log -> results/run_8/
+Setup done: classes 3 vs 5, features=resnet, tag=3v5_resnet
+plain    after phase1 (500, 100): A=0.97 B=0.58 | after phase2 (100, 500): A=0.50 B=0.96 | after phase3 (500, 100): A=0.97 B=0.58
+weighted after phase1 (500, 100): A=0.85 B=0.81 | after phase2 (100, 500): A=0.80 B=0.86 | after phase3 (500, 100): A=0.86 B=0.80

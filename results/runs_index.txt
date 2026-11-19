@@ -1,0 +1,9 @@
+run_1 | 2026-11-19 18:29 | 3v5_resnet_exp7 | python qnn_imbalance.py exp7 --a 3 --b 5 --epochs 150 --seeds 10
+run_2 | 2026-11-19 18:33 | 3v5_resnet_exp6_nobias | python qnn_imbalance.py exp6 --a 3 --b 5 --epochs 150 --seeds 30 --no_bias
+run_3 | 2026-11-19 18:45 | 0v1_resnet_exp6_frozen | python qnn_imbalance.py exp6 --a 0 --b 1 --epochs 150 --seeds 30 --freeze_head
+run_4 | 2026-11-19 18:55 | 0v1_resnet_exp7_frozen | python qnn_imbalance.py exp7 --a 0 --b 1 --epochs 150 --seeds 10 --freeze_head
+run_5 | 2026-11-19 18:58 | 0v1_resnet_exp4 | python qnn_imbalance.py exp4 --a 0 --b 1 --epochs 150 --seeds 10 --configs all --lams 0,5,20,100
+run_6 | 2026-11-19 19:17 | 3v5_resnet_exp6_frozen | python qnn_imbalance.py exp6 --a 3 --b 5 --epochs 150 --seeds 10 --freeze_head
+run_7 | 2026-11-19 19:18 | 0v1_resnet_exp3_frozen | python qnn_imbalance.py exp3 --a 0 --b 1 --epochs 150 --freeze_head
+run_8 | 2026-11-19 19:18 | 3v5_resnet_exp5 | python qnn_imbalance.py exp5 --a 3 --b 5 --epochs 150 --seeds 5 --phases 500,100;100,500;500,100
+run_9 | 2026-11-19 19:20 | 0v1_resnet_exp4 | python qnn_imbalance.py exp4 --a 0 --b 1 --epochs 150 --seeds 5 --lams 0,20,100 --target_a 23 --target_b 67

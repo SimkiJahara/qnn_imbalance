@@ -1,0 +1,46 @@
+command: qnn_imbalance.py exp7 --a 3 --b 5 --epochs 150 --seeds 10
+args   : {'mode': 'exp7', 'a': 3, 'b': 5, 'features': 'resnet', 'epochs': 150, 'seeds': 10, 'target_a': 67.0, 'target_b': 23.0, 'weighted': False, 'phases': [(500, 100), (100, 500)], 'no_bias': False, 'freeze_head': False, 'lams': (0.0, 1.0, 5.0), 'configs': [(500, 100)], 'out': 'results'}
+outputs and log -> results/run_1/
+Setup done: classes 3 vs 5, features=resnet, tag=3v5_resnet
+plain    (200, 200): recall A=0.82 B=0.83
+      push toward TRUE class  A: q=[-0.19  2.49  0.34  0.27] | B: q=[ 0.24  0.41 -0.05  0.14] | bias term b_B-b_A=+1.49 (+ favours B)
+      separation per qubit D=[0.05 2.9  0.29 0.42] | top qubit per seed [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+plain    (500, 100): recall A=0.97 B=0.56
+      push toward TRUE class  A: q=[-0.22  1.8   0.36  0.37] | B: q=[0.35 0.59 0.1  0.2 ] | bias term b_B-b_A=-0.85 (+ favours B)
+      separation per qubit D=[0.13 2.38 0.45 0.57] | top qubit per seed [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+plain    (100, 500): recall A=0.49 B=0.97
+      push toward TRUE class  A: q=[0.27 1.23 0.11 0.19] | B: q=[0.43 0.37 0.03 0.9 ] | bias term b_B-b_A=+1.88 (+ favours B)
+      separation per qubit D=[0.7  1.6  0.14 1.1 ] | top qubit per seed [0, 1, 0, 1, 1, 3, 1, 1, 1, 3]
+plain    (500, 200): recall A=0.93 B=0.67
+      push toward TRUE class  A: q=[0.06 1.59 0.29 0.47] | B: q=[0.18 0.73 0.16 0.17] | bias term b_B-b_A=-0.07 (+ favours B)
+      separation per qubit D=[0.24 2.32 0.45 0.64] | top qubit per seed [0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+plain    (200, 500): recall A=0.69 B=0.93
+      push toward TRUE class  A: q=[0.29 1.28 0.33 0.32] | B: q=[0.21 0.67 0.15 0.4 ] | bias term b_B-b_A=+1.62 (+ favours B)
+      separation per qubit D=[0.5  1.95 0.48 0.72] | top qubit per seed [1, 0, 1, 1, 1, 1, 1, 1, 1, 1]
+weighted (200, 200): recall A=0.82 B=0.83
+      push toward TRUE class  A: q=[-0.19  2.49  0.34  0.27] | B: q=[ 0.24  0.41 -0.05  0.14] | bias term b_B-b_A=+1.49 (+ favours B)
+      separation per qubit D=[0.05 2.9  0.29 0.42] | top qubit per seed [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+weighted (500, 100): recall A=0.85 B=0.81
+      push toward TRUE class  A: q=[0.23 1.59 0.18 0.38] | B: q=[-0.06  0.8   0.09  0.36] | bias term b_B-b_A=+0.79 (+ favours B)
+      separation per qubit D=[0.18 2.4  0.27 0.74] | top qubit per seed [3, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+weighted (100, 500): recall A=0.82 B=0.84
+      push toward TRUE class  A: q=[0.26 1.81 0.06 0.5 ] | B: q=[0.26 0.53 0.19 0.2 ] | bias term b_B-b_A=+1.15 (+ favours B)
+      separation per qubit D=[0.53 2.35 0.25 0.7 ] | top qubit per seed [0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+weighted (500, 200): recall A=0.83 B=0.83
+      push toward TRUE class  A: q=[0.15 1.63 0.27 0.38] | B: q=[-0.09  0.89  0.12  0.32] | bias term b_B-b_A=+0.81 (+ favours B)
+      separation per qubit D=[0.06 2.52 0.39 0.7 ] | top qubit per seed [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+weighted (200, 500): recall A=0.82 B=0.84
+      push toward TRUE class  A: q=[0.21 1.67 0.65 0.35] | B: q=[ 0.23  0.6  -0.18  0.2 ] | bias term b_B-b_A=+1.39 (+ favours B)
+      separation per qubit D=[0.44 2.27 0.47 0.54] | top qubit per seed [0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+decomposition check: max |sum of parts - real margin| over all models = 1.9e-06 (should be ~1e-6)
+
+how much of the prior log-odds log(nB/nA) does the bias absorb?
+  = plain bias minus weighted bias of the SAME config (same data, same init, paired by seed); weighted ~ the prior-free model.
+  (not measured against the balanced reference: its 300-image pool makes that baseline unreliable)
+  (500, 100): bias shift -1.64 [95% CI -1.81, -1.47] | log prior ratio -1.61 | fraction absorbed 1.02
+  (100, 500): bias shift +0.73 [95% CI +0.21, +1.25] | log prior ratio +1.61 | fraction absorbed 0.45
+  (500, 200): bias shift -0.88 [95% CI -1.10, -0.66] | log prior ratio -0.92 | fraction absorbed 0.96
+  (200, 500): bias shift +0.23 [95% CI -0.25, +0.71] | log prior ratio +0.92 | fraction absorbed 0.25
+
+Done. Everything from this run (all PNGs + log.txt) is in results/run_1/   (index of all runs: results/runs_index.txt)

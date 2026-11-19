@@ -1,0 +1,10 @@
+command: qnn_imbalance.py exp4 --a 0 --b 1 --epochs 150 --seeds 5 --lams 0,20,100 --target_a 23 --target_b 67
+args   : {'mode': 'exp4', 'a': 0, 'b': 1, 'features': 'resnet', 'epochs': 150, 'seeds': 5, 'target_a': 23.0, 'target_b': 67.0, 'weighted': False, 'phases': [(500, 100), (100, 500)], 'no_bias': False, 'freeze_head': False, 'lams': (0.0, 20.0, 100.0), 'configs': [(500, 100)], 'out': 'results'}
+outputs and log -> results/run_9/
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+(500, 100) plain-angle    lam=0: recall A=0.98+/-0.00 B=0.91+/-0.01 | mean angle A=[62.  79.7] B=[90.  91.7] | miss A=[39.  56.7] B=[23.  24.7] (target A 23, B 67)
+(500, 100) plain-angle    lam=20: recall A=0.99+/-0.00 B=0.79+/-0.03 | mean angle A=[43.4 39.3] B=[65.7 65.6] | miss A=[20.4 16.3] B=[-1.3 -1.4] (target A 23, B 67)
+(500, 100) plain-angle    lam=100: recall A=0.98+/-0.00 B=0.73+/-0.04 | mean angle A=[43.4 39.9] B=[64.8 65.6] | miss A=[20.4 16.9] B=[-2.2 -1.4] (target A 23, B 67)
+(500, 100) balanced-angle lam=0: recall A=0.98+/-0.00 B=0.91+/-0.01 | mean angle A=[62.  79.7] B=[90.  91.7] | miss A=[39.  56.7] B=[23.  24.7] (target A 23, B 67)
+(500, 100) balanced-angle lam=20: recall A=0.98+/-0.01 B=0.75+/-0.06 | mean angle A=[44.9 42.4] B=[67.8 65.9] | miss A=[21.9 19.4] B=[ 0.8 -1.1] (target A 23, B 67)
+(500, 100) balanced-angle lam=100: recall A=0.99+/-0.00 B=0.65+/-0.11 | mean angle A=[45.1 42.1] B=[67.1 65.7] | miss A=[22.1 19.1] B=[ 0.1 -1.3] (target A 23, B 67)

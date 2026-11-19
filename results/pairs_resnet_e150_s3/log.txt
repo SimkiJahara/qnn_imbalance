@@ -1,0 +1,22 @@
+command: qnn_imbalance.py pairs --epochs 150
+args   : {'mode': 'pairs', 'a': 0, 'b': 1, 'features': 'resnet', 'epochs': 150, 'seeds': 3, 'target_a': 67.0, 'target_b': 23.0, 'weighted': False, 'phases': [(500, 100), (100, 500)], 'no_bias': False, 'out': 'results'}
+outputs and log -> results/pairs_resnet_e150_s3/
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+  pair 0v1: classical(full)=0.97  classical(4-d)=0.96  QNN=0.96
+Loading CIFAR-10 ...
+Extracting ResNet18 features for class 8 ...
+Setup done: classes 0 vs 8, features=resnet, tag=0v8_resnet
+  pair 0v8: classical(full)=0.95  classical(4-d)=0.92  QNN=0.91
+Extracting ResNet18 features for class 6 ...
+Setup done: classes 1 vs 6, features=resnet, tag=1v6_resnet
+  pair 1v6: classical(full)=1.00  classical(4-d)=1.00  QNN=1.00
+Setup done: classes 3 vs 5, features=resnet, tag=3v5_resnet
+  pair 3v5: classical(full)=0.83  classical(4-d)=0.82  QNN=0.82
+
+pair | classical full | classical 4-d | QNN (balanced test acc)
+0v1  | 0.97 | 0.96 | 0.96
+0v8  | 0.95 | 0.92 | 0.91
+1v6  | 1.00 | 1.00 | 1.00
+3v5  | 0.83 | 0.82 | 0.82
+
+Pick a pair where classical 4-d is well above 0.5, then run exp2/exp3/exp4 with --a --b.

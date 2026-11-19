@@ -1,0 +1,47 @@
+command: qnn_imbalance.py exp6 --a 0 --b 1 --epochs 150 --seeds 10
+args   : {'mode': 'exp6', 'a': 0, 'b': 1, 'features': 'resnet', 'epochs': 150, 'seeds': 10, 'target_a': 67.0, 'target_b': 23.0, 'weighted': False, 'phases': [(500, 100), (100, 500)], 'out': 'results'}
+outputs and log -> results/0v1_resnet_exp6_e150_s10_v2/
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+balanced reference: recall A=0.97 B=0.96
+input RY angle (deg) per qubit  A=[130.2  86.2  80.8  80.3]  B=[40.4 85.1 75.5 79.5]
+NOISE FLOOR balanced (200, 200), new draw: mean|d angle|= 16.2+/- 8.0 deg
+      signed control shift (mean over seeds)  A=[16.5 -5.4 -4.  -4.2]  B=[23.6  4.   3.   2.6]  (SE ~6.2 deg per cell)
+NOISE FLOOR balanced (300, 300), new draw: mean|d angle|= 12.9+/- 7.9 deg
+      signed control shift (mean over seeds)  A=[15.4 -4.  -3.  -6.5]  B=[15.2  2.6  4.   1.4]  (SE ~5.2 deg per cell)
+plain    (200, 200): mean|d angle|=  0.0+/- 0.0 deg | recall A=0.97 B=0.96 gap=0.01 | weights moved 33.5 deg
+      d angle A=[0. 0. 0. 0.]  B=[0. 0. 0. 0.]  (per qubit, deg)
+plain    (500, 100): mean|d angle|= 23.2+/- 9.9 deg | recall A=0.98 B=0.91 gap=0.08 | weights moved 31.4 deg
+      d angle A=[ -5.7  -8.4 -12.9   6.1]  B=[30.3  3.8  6.3 -6.1]  (per qubit, deg)
+plain    (100, 500): mean|d angle|= 19.2+/- 6.2 deg | recall A=0.93 B=0.99 gap=0.06 | weights moved 31.4 deg
+      d angle A=[ 26.8  -9.4  -2.9 -12.9]  B=[17.   8.7  1.5 10.5]  (per qubit, deg)
+plain    (500, 200): mean|d angle|= 19.5+/- 9.4 deg | recall A=0.98 B=0.94 gap=0.03 | weights moved 31.4 deg
+      d angle A=[  2.6   4.  -13.7  -2.6]  B=[17.5 -2.7  7.6  3. ]  (per qubit, deg)
+plain    (200, 500): mean|d angle|= 17.2+/- 9.5 deg | recall A=0.95 B=0.98 gap=0.02 | weights moved 33.7 deg
+      d angle A=[ 12.  -17.5  -8.8  -3.2]  B=[10.5 12.1  3.   3.7]  (per qubit, deg)
+weighted (200, 200): mean|d angle|=  0.0+/- 0.0 deg | recall A=0.97 B=0.96 gap=0.01 | weights moved 33.5 deg
+      d angle A=[0. 0. 0. 0.]  B=[0. 0. 0. 0.]  (per qubit, deg)
+weighted (500, 100): mean|d angle|= 13.5+/- 9.6 deg | recall A=0.97 B=0.96 gap=0.01 | weights moved 32.5 deg
+      d angle A=[ 3.4 -4.8 -2.8 -3.3]  B=[13.7 -2.9 -0.1 -1.9]  (per qubit, deg)
+weighted (100, 500): mean|d angle|= 15.2+/- 9.1 deg | recall A=0.96 B=0.96 gap=0.02 | weights moved 33.2 deg
+      d angle A=[ 6.6  3.1 -7.3 -0.2]  B=[16.8  2.3  8.7 -0. ]  (per qubit, deg)
+weighted (500, 200): mean|d angle|=  6.7+/- 7.5 deg | recall A=0.97 B=0.96 gap=0.01 | weights moved 33.8 deg
+      d angle A=[ 5.1 -3.6 -2.6 -3. ]  B=[ 4.4 -0.3 -1.8  5.2]  (per qubit, deg)
+weighted (200, 500): mean|d angle|= 12.6+/- 7.1 deg | recall A=0.97 B=0.96 gap=0.01 | weights moved 33.0 deg
+      d angle A=[ 8.7 -6.3  0.2 -0. ]  B=[13.6  5.7  1.4 -1.3]  (per qubit, deg)
+
+plain vs weighted vs noise floor (floor = balanced control with the closest total sample count)
+(500, 100): plain  23.2 | weighted  13.5 | floor  12.9 deg  -> excess over floor: plain +10.4, weighted  +0.6  || weighted lower in 9/10 seeds, paired diff 9.7+/-9.3
+(100, 500): plain  19.2 | weighted  15.2 | floor  12.9 deg  -> excess over floor: plain  +6.3, weighted  +2.3  || weighted lower in 6/10 seeds, paired diff 4.0+/-10.4
+(500, 200): plain  19.5 | weighted   6.7 | floor  12.9 deg  -> excess over floor: plain  +6.6, weighted  -6.1  || weighted lower in 9/10 seeds, paired diff 12.7+/-7.7
+(200, 500): plain  17.2 | weighted  12.6 | floor  12.9 deg  -> excess over floor: plain  +4.3, weighted  -0.2  || weighted lower in 7/10 seeds, paired diff 4.5+/-13.4
+
+SIGNED shift beyond noise = (imbalanced - closest balanced control), paired by seed, deg.
+  * = paired |t| above the 95% critical value (uncorrected over 8 cells: a screen, not proof)
+plain    (500, 100) minus control(300, 300):  A=[ -21.1*   -4.4    -9.9   +12.6 ]  B=[ +15.1    +1.3    +2.3    -7.5 ]
+plain    (100, 500) minus control(300, 300):  A=[ +11.4    -5.4    +0.0    -6.4 ]  B=[  +1.8    +6.1    -2.5    +9.0 ]
+plain    (500, 200) minus control(300, 300):  A=[ -12.8    +8.0   -10.8    +3.9 ]  B=[  +2.3    -5.3    +3.6    +1.6 ]
+plain    (200, 500) minus control(300, 300):  A=[  -3.4   -13.5    -5.8    +3.4 ]  B=[  -4.7    +9.5    -1.0    +2.3 ]
+weighted (500, 100) minus control(300, 300):  A=[ -12.0    -0.8    +0.2    +3.2 ]  B=[  -1.5    -5.5    -4.1    -3.3 ]
+weighted (100, 500) minus control(300, 300):  A=[  -8.8    +7.1    -4.3    +6.4 ]  B=[  +1.6    -0.3    +4.7    -1.5 ]
+weighted (500, 200) minus control(300, 300):  A=[ -10.3    +0.4    +0.4    +3.5 ]  B=[ -10.8*   -2.9    -5.8    +3.7 ]
+weighted (200, 500) minus control(300, 300):  A=[  -6.7    -2.3    +3.2    +6.5 ]  B=[  -1.6    +3.1    -2.5    -2.8 ]

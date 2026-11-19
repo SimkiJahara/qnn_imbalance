@@ -1,0 +1,7 @@
+command: qnn_imbalance.py exp3 --a 0 --b 1 --epochs 150 --freeze_head
+args   : {'mode': 'exp3', 'a': 0, 'b': 1, 'features': 'resnet', 'epochs': 150, 'seeds': 3, 'target_a': 67.0, 'target_b': 23.0, 'weighted': False, 'phases': [(500, 100), (100, 500)], 'no_bias': False, 'freeze_head': True, 'lams': (0.0, 1.0, 5.0), 'configs': [(500, 100)], 'out': 'results'}
+outputs and log -> results/run_7/
+Setup done: classes 0 vs 1, features=resnet, tag=0v1_resnet
+init: recall A=0.43 B=0.61 | head-refit A=0.47 B=0.51 | angA=[82.5 90.9 94.6 90.6] angB=[81.6 88.3 86.4 94.1]
+after A: recall A=1.00 B=0.00 | head-refit A=0.94 B=0.85 | angA=[145.8 134.  148.8 135.6] angB=[135.  136.4  99.5 142.7]
+after B: recall A=0.08 B=1.00 | head-refit A=0.93 B=0.94 | angA=[81.9 84.5 75.4 68.5] angB=[71.2 44.3 66.5 65. ]
